@@ -1,0 +1,45 @@
+.tutor-card {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+.tutor-card:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.tutor-name {
+    margin-top: 0;
+    color: #333;
+}
+
+.tutor-subjects {
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.tutor-bio {
+    color: #666;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.view-profile-btn {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.view-profile-btn:hover {
+    background-color: #0056b3;
+}

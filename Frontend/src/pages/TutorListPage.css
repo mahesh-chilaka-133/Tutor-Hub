@@ -1,0 +1,97 @@
+/* --- Main Page Layout --- */
+.tutor-list-page {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 20px;
+    width: 100%;
+}
+
+/* --- Page Header & Search Bar Styling --- */
+.page-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.page-header h1 {
+    font-size: 2.8rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    color: #7f8c8d;
+    margin-bottom: 30px;
+}
+
+/* Container for the search input and icon */
+.search-container {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-icon {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    color: #95a5a6;
+    font-size: 1.2rem;
+}
+
+.search-input {
+    width: 100%;
+    padding: 18px 20px 18px 60px; /* Increased left padding for the icon */
+    font-size: 1.1rem;
+    color: #333;
+    border: 1px solid #dfe6e9;
+    border-radius: 50px; /* Creates the "pill" shape */
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease-in-out;
+}
+
+.search-input::placeholder {
+    color: #95a5a6;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.15);
+    background-color: #fff;
+}
+
+/* --- Tutors Grid Styling --- */
+.tutors-grid-container {
+    width: 100%;
+}
+
+.tutors-grid {
+    display: grid;
+    /* This creates a responsive grid where columns are at least 320px wide.
+       The grid will automatically adjust the number of columns based on screen width. */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+/* --- Status & Informational Messages --- */
+.loading-message,
+.error-message,
+.no-results-message {
+    grid-column: 1 / -1; /* Make the message span all columns of the grid */
+    text-align: center;
+    padding: 50px 20px;
+    font-size: 1.2rem;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.error-message {
+    background-color: #fadbd8;
+    color: #c0392b;
+    border-radius: 8px;
+    border: 1px solid #f5c6cb;
+}

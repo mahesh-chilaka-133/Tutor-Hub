@@ -1,0 +1,162 @@
+/* --- Overlay & Base Modal Container --- */
+.chatbot-modal-overlay {
+  position: fixed;
+  inset: 0; /* Shorthand for top:0; right:0; bottom:0; left:0; */
+  background: rgba(0,0,0,0.4); /* Slightly darker, softer overlay */
+  z-index: 1000;
+  display: flex;
+  justify-content: flex-end; /* Position to the right */
+  align-items: flex-end; /* Position to the bottom */
+  padding: 20px; /* Space from the edges */
+}
+
+.chatbot-modal {
+  background: #fff;
+  border-radius: 12px; /* Uniform rounded corners */
+  box-shadow: 0 5px 25px rgba(0,0,0,0.2); /* More subtle shadow */
+  width: 360px; /* Slightly wider */
+  max-width: 95vw; /* Ensure it fits on very small screens */
+  height: 80vh; /* Make it taller */
+  max-height: 550px; /* Max height for larger screens */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Ensures content respects border-radius */
+  transform: translateY(20px); /* Initial slight offset for animation */
+  opacity: 0;
+  animation: slideUpFadeIn 0.3s forwards ease-out; /* Slide up and fade in */
+}
+
+@keyframes slideUpFadeIn {
+  to { transform: translateY(0); opacity: 1; }
+}
+
+
+/* --- Header --- */
+.chatbot-header {
+  background: #3498db; /* A vibrant blue */
+  color: #fff;
+  padding: 12px 20px; /* More padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.chatbot-header-icon {
+  margin-right: 8px;
+  font-size: 1.2em;
+}
+
+.chatbot-close-btn { /* Changed class name for consistency with other close buttons */
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.2em;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+.chatbot-close-btn:hover {
+  opacity: 1;
+}
+
+/* --- Messages Container --- */
+.chatbot-messages {
+  padding: 15px; /* More padding */
+  flex: 1;
+  overflow-y: auto;
+  background: #fcfcfc; /* Very light background for messages */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Individual Message Bubble */
+.chatbot-msg {
+  margin-bottom: 10px; /* More space between messages */
+  padding: 10px 15px; /* More padding inside bubbles */
+  border-radius: 18px; /* More rounded corners */
+  max-width: 85%; /* Slightly wider messages */
+  word-break: break-word;
+  line-height: 1.4;
+  font-size: 0.95em;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1); /* Subtle shadow for depth */
+}
+
+.chatbot-msg.bot {
+  background: #e9f5ff; /* Light blue for bot */
+  color: #34495e;
+  align-self: flex-start;
+  border-bottom-left-radius: 5px; /* Pointed corner */
+}
+
+.chatbot-msg.user {
+  background: #3498db; /* Blue for user */
+  color: #fff;
+  align-self: flex-end;
+  border-bottom-right-radius: 5px; /* Pointed corner */
+}
+
+
+/* --- Input Row --- */
+.chatbot-input-row {
+  display: flex;
+  border-top: 1px solid #eee;
+  background: #fff;
+  padding: 10px 15px; /* Padding for the entire row */
+}
+
+.chatbot-input-row input {
+  flex: 1;
+  border: 1px solid #e0e0e0; /* Subtle border */
+  border-radius: 20px; /* Pill shape */
+  padding: 10px 15px;
+  font-size: 1em;
+  outline: none;
+  background: #f7f8fa;
+  margin-right: 10px; /* Space between input and button */
+}
+
+.chatbot-input-row input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.chatbot-input-row button {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 1.1em;
+  cursor: pointer;
+  border-radius: 20px; /* Pill shape */
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chatbot-input-row button:hover:not(:disabled) {
+  background: #2980b9;
+}
+.chatbot-input-row button:disabled {
+  background: #a0a0a0;
+  cursor: not-allowed;
+}
+
+/* Media Queries for smaller screens */
+@media (max-width: 600px) {
+  .chatbot-modal-overlay {
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+
+  .chatbot-modal {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    margin: 0;
+    max-height: 100vh;
+  }
+}

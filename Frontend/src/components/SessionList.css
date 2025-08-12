@@ -1,0 +1,151 @@
+/* --- Grid Container for the Cards --- */
+.session-list-grid {
+    display: grid;
+    /* Creates responsive columns that are at least 340px wide */
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 25px;
+}
+
+/* --- Individual Session Card Styling --- */
+.session-card {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    display: flex;
+    flex-direction: column;
+    border-top: 5px solid #6c757d; /* Default "pending" color */
+    transition: all 0.3s ease;
+}
+
+.session-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* --- Status-Based Colors --- */
+.session-card.status-confirmed { border-top-color: #28a745; }
+.session-card.status-completed { border-top-color: #17a2b8; }
+.session-card.status-cancelled { border-top-color: #dc3545; }
+
+/* --- Card Header --- */
+.session-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.session-card-header h3 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #34495e;
+}
+
+.session-status {
+    font-size: 0.9rem;
+    font-weight: bold;
+    padding: 5px 12px;
+    border-radius: 50px;
+    text-transform: capitalize;
+    color: #fff;
+    background-color: #6c757d; /* Default "pending" color */
+}
+.status-confirmed .session-status { background-color: #28a745; }
+.status-completed .session-status { background-color: #17a2b8; }
+.status-cancelled .session-status { background-color: #dc3545; }
+
+
+/* --- Card Body --- */
+.session-card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex-grow: 1; /* Makes the body fill available space */
+}
+
+.session-participant, .session-time {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #555;
+    font-size: 1rem;
+}
+
+
+/* --- Card Actions (Footer) --- */
+.session-card-actions {
+    display: flex;
+    gap: 10px;
+    padding: 0 20px 20px 20px;
+    margin-top: 10px;
+}
+
+.btn-session-confirm, .btn-session-cancel {
+    flex: 1; /* Makes both buttons take equal space */
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+
+.btn-session-confirm { background-color: #28a745; }
+.btn-session-confirm:hover { background-color: #218838; }
+
+.btn-session-cancel { background-color: #dc3545; }
+.btn-session-cancel:hover { background-color: #c82333; }
+
+/* ... (keep all existing styles) ... */
+
+/* NEW: Payment Status Display */
+.session-payment-status {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 0.9rem; font-weight: bold;
+    margin-top: 10px; /* Adds space from other details */
+    color: #555; /* Default neutral color */
+}
+.session-card.payment-status-pending .session-payment-status { color: #e74c3c; } /* Red for pending payment */
+.session-card.payment-status-paid .session-payment-status { color: #28a745; } /* Green for paid */
+
+/* NEW: Payment Button */
+.btn-payment {
+    flex: 1; padding: 10px; border: none; border-radius: 6px;
+    font-size: 1rem; font-weight: bold; color: white; cursor: pointer;
+    display: flex; justify-content: center; align-items: center; gap: 8px;
+    transition: background-color 0.2s;
+}
+.btn-payment.status-pending { background-color: #e74c3c; } /* Red for pending payment */
+.btn-payment.status-pending:hover { background-color: #c0392b; }
+.btn-payment.status-paid { background-color: #28a745; cursor: default; } /* Green for paid - no hover effect */
+.btn-payment.status-paid:hover { background-color: #28a745; }
+
+.payment-confirmed-indicator {
+    flex: 1; text-align: center; font-size: 0.9rem; font-weight: bold;
+    color: #28a745; padding: 10px; background-color: #e6ffe6; border-radius: 6px;
+}
+.btn-join-call {
+  padding: 10px 15px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.2s;
+}
+
+.btn-join-call:hover {
+  background-color: #0056b3;
+}

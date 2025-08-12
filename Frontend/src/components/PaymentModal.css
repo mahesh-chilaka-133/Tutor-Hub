@@ -1,0 +1,35 @@
+@keyframes fadeInOverlay { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideInModal { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+.payment-modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(44, 62, 80, 0.7); display: flex; justify-content: center; align-items: center; z-index: 1000;
+    padding: 20px; animation: fadeInOverlay 0.3s ease;
+}
+.payment-modal-content {
+    background: #fff; border-radius: 12px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto;
+    animation: slideInModal 0.4s ease-out;
+}
+.payment-modal-header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 30px; border-bottom: 1px solid #e9ecef;
+}
+.payment-modal-header h2 { margin: 0; font-size: 1.5rem; color: #2c3e50; }
+.close-modal-btn { background: none; border: none; font-size: 1.5rem; color: #95a5a6; cursor: pointer; transition: color 0.2s; }
+.close-modal-btn:hover { color: #34495e; }
+
+.payment-modal-body { padding: 30px; text-align: center; }
+.countdown { font-size: 1.2rem; font-weight: bold; color: #e74c3c; margin-bottom: 20px; }
+.thank-you-message { font-size: 1.5rem; color: #28a745; font-weight: bold; padding: 40px; }
+
+.qr-code-placeholder {
+    width: 200px; height: 200px; background: #f0f0f0; border: 1px dashed #ccc;
+    margin: 0 auto 30px auto; display: flex; flex-direction: column; justify-content: center; align-items: center;
+    color: #6c757d; font-size: 1.1rem;
+}
+.qr-code-placeholder .qr-icon { font-size: 3rem; margin-bottom: 10px; }
+
+.payment-instructions { text-align: left; margin-top: 30px; }
+.payment-instructions h3 { font-size: 1.2rem; color: #34495e; margin-bottom: 15px; }
+.payment-instructions p { margin-bottom: 8px; line-height: 1.5; color: #555; }
