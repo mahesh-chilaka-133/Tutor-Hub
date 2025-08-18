@@ -2,7 +2,8 @@
     max-width: 1200px;
     margin: 40px auto;
     padding: 20px;
-    position: relative; /* Needed for positioning the FAB if it's not fixed */
+    position: relative;
+    background: #f8fafc;
 }
 
 /* --- Header Section --- */
@@ -13,14 +14,20 @@
 
 .welcome-header h1 {
     font-size: 2.8rem;
-    font-weight: 600;
-    color: #2c3e50;
+    font-weight: 700;
+    color: #2563eb;
     margin-bottom: 10px;
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
 }
 
 .welcome-header p {
     font-size: 1.2rem;
     color: #7f8c8d;
+    margin-top: 8px;
 }
 
 /* --- Dashboard Layout --- */
@@ -41,11 +48,18 @@
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e9ecef;
 }
 
 /* --- Main Info Box Styling --- */
 .info-box {
     color: #34495e;
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(44,62,80,0.06);
+    border: 1px solid #e9ecef;
+    margin-bottom: 30px;
 }
 
 .info-box h3 {
@@ -55,10 +69,13 @@
     font-size: 1.6rem;
     margin-top: 0;
     margin-bottom: 25px;
+    color: #2563eb;
+    font-weight: 700;
 }
 
 .info-box-icon {
-    color: #007bff;
+    color: #2563eb;
+    font-size: 2rem;
 }
 
 /* --- Tutor Prompt Box Styling --- */
@@ -66,7 +83,8 @@
     background-color: #e9f5ff;
     padding: 30px;
     border-radius: 8px;
-    border-left: 5px solid #007bff;
+    border-left: 5px solid #2563eb;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
 }
 .info-box.prompt p {
     line-height: 1.6;
@@ -74,18 +92,21 @@
 }
 .btn-small {
     display: inline-block;
-    background-color: #007bff;
+    background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
     color: white;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 50px;
     text-decoration: none;
     font-weight: bold;
-    transition: background-color 0.2s ease;
+    font-size: 1rem;
+    transition: background 0.2s, transform 0.2s;
+    border: none;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
 }
 .btn-small:hover {
-    background-color: #0056b3;
+    background: linear-gradient(90deg, #1d4ed8 0%, #6d28d9 100%);
+    transform: translateY(-2px) scale(1.04);
 }
-
 
 /* --- Student Sessions List Styling --- */
 .sessions-list {
@@ -98,20 +119,27 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    border-radius: 6px;
+    border-radius: 8px;
     margin-bottom: 10px;
-    border: 1px solid #dfe6e9;
-    transition: background-color 0.2s;
+    border: 1px solid #e0e7ff;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(44,62,80,0.06);
+    transition: background-color 0.2s, box-shadow 0.2s;
 }
 .session-item:hover {
     background-color: #f8f9fa;
+    box-shadow: 0 4px 12px rgba(37,99,235,0.08);
 }
 .session-item strong {
     font-weight: 600;
+    color: #2563eb;
 }
 .session-time {
-    font-size: 0.9rem;
+    font-size: 0.98rem;
     color: #6c757d;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
 /* --- Sidebar Quick Actions Styling --- */
@@ -119,6 +147,12 @@
     margin-top: 0;
     margin-bottom: 20px;
     font-size: 1.5rem;
+    color: #2563eb;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 .action-card {
     display: flex;
@@ -133,38 +167,42 @@
     font-size: 1.1rem;
     font-weight: 500;
     transition: background-color 0.2s, transform 0.2s;
+    box-shadow: 0 1px 4px rgba(44,62,80,0.06);
 }
 .action-card:hover {
-    background-color: #e9ecef;
-    transform: translateX(5px);
+    background-color: #e0e7ff;
+    transform: translateX(5px) scale(1.03);
 }
 .action-icon {
-    color: #007bff;
+    color: #7c3aed;
     font-size: 1.5rem;
+    transition: color 0.2s;
+}
+.action-card:hover .action-icon {
+    color: #2563eb;
 }
 
 /* --- AI Chatbot Floating Action Button (FAB) --- */
 .ai-chatbot-fab {
-    position: fixed; /* Fixed positioning relative to the viewport */
+    position: fixed;
     bottom: 30px;
     right: 30px;
     width: 60px;
     height: 60px;
-    border-radius: 50%; /* Makes it circular */
-    background-color: #3498db; /* A distinct blue for the bot */
+    border-radius: 50%;
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
     color: white;
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.5rem; /* Icon size handled by FaRobot size={28} */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    font-size: 2rem;
+    box-shadow: 0 5px 15px rgba(37,99,235,0.18);
     cursor: pointer;
-    z-index: 998; /* Ensures it floats above most content */
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    z-index: 998;
+    transition: background 0.2s, transform 0.2s;
 }
-
 .ai-chatbot-fab:hover {
-    background-color: #2980b9;
-    transform: translateY(-3px);
+    background: linear-gradient(135deg, #1d4ed8 0%, #6d28d9 100%);
+    transform: translateY(-3px) scale(1.08);
 }

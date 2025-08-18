@@ -1,13 +1,16 @@
 .home-page-container {
     width: 100%;
+    background: #f8fafc;
 }
 
+/* --- Section Titles --- */
 .section-title {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 50px;
-    color: #333;
-    font-weight: 600;
+    color: #2563eb;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
 
 /* --- Hero Section --- */
@@ -16,13 +19,14 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 80px 20px;
-    background-color: #f4f7fc; /* A light, clean background */
+    padding: 90px 20px 70px 20px;
+    background: linear-gradient(90deg, #e0e7ff 0%, #f8fafc 100%);
     border-bottom: 1px solid #e0e0e0;
 }
 
 .hero-content {
     max-width: 800px;
+    margin: 0 auto;
 }
 
 .hero-title {
@@ -30,6 +34,8 @@
     line-height: 1.2;
     margin-bottom: 20px;
     color: #2c3e50;
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
 .hero-subtitle {
@@ -45,39 +51,45 @@
 }
 
 .hero-buttons .btn {
-    padding: 15px 30px;
+    padding: 15px 32px;
     text-decoration: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
+    border-radius: 50px;
+    font-size: 1.15rem;
     font-weight: bold;
     border: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .btn-primary {
-    background-color: #007bff;
+    background: linear-gradient(90deg, #2563eb 0%, #7c3aed 100%);
     color: white;
 }
 .btn-primary:hover {
-    background-color: #0056b3;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    background: linear-gradient(90deg, #1d4ed8 0%, #6d28d9 100%);
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 4px 16px rgba(37,99,235,0.12);
 }
 
 .btn-secondary {
     background-color: #fff;
-    color: #333;
-    border: 1px solid #ccc;
+    color: #2563eb;
+    border: 1px solid #2563eb;
 }
 .btn-secondary:hover {
-    background-color: #e9ecef;
-    transform: translateY(-3px);
+    background-color: #e0e7ff;
+    color: #7c3aed;
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 2px 8px rgba(124,58,237,0.08);
 }
-
 
 /* --- How It Works Section --- */
 .how-it-works-section {
     padding: 70px 20px;
+    background: #fff;
 }
 
 .steps-container {
@@ -90,26 +102,43 @@
 .step-card {
     max-width: 320px;
     text-align: center;
-    padding: 20px;
+    padding: 28px 20px;
+    background: #f8fafc;
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(44,62,80,0.07);
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+.step-card:hover {
+    box-shadow: 0 8px 32px rgba(37,99,235,0.12);
+    transform: translateY(-4px) scale(1.01);
 }
 
 .step-icon {
     font-size: 3.5rem;
-    color: #007bff;
+    color: #2563eb;
     margin-bottom: 20px;
+    transition: color 0.2s;
+}
+.step-card:hover .step-icon {
+    color: #7c3aed;
 }
 
 .step-card h3 {
     font-size: 1.5rem;
     margin-bottom: 15px;
     color: #333;
+    font-weight: 700;
 }
 
 .step-card p {
     color: #666;
     line-height: 1.6;
+    font-size: 1.08rem;
 }
-
 
 /* --- Featured Subjects Section --- */
 .featured-subjects-section {
@@ -121,7 +150,7 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 18px;
     max-width: 900px;
     margin: 0 auto;
 }
@@ -129,12 +158,45 @@
 .subject-tag {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     background-color: #fff;
-    color: #333;
-    padding: 10px 20px;
+    color: #2563eb;
+    padding: 12px 28px;
     border-radius: 50px;
-    font-weight: 500;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    font-weight: 600;
+    border: 1px solid #e0e7ff;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.06);
+    font-size: 1.08rem;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.subject-tag:hover {
+    background: #e0e7ff;
+    color: #7c3aed;
+    box-shadow: 0 4px 16px rgba(124,58,237,0.10);
+}
+.subject-tag svg {
+    font-size: 1.3rem;
+    color: #7c3aed;
+    transition: color 0.2s;
+}
+.subject-tag:hover svg {
+    color: #2563eb;
+}
+
+/* --- Responsive --- */
+@media (max-width: 900px) {
+    .steps-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    .subjects-container {
+        gap: 12px;
+    }
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    .section-title {
+        font-size: 2rem;
+    }
 }

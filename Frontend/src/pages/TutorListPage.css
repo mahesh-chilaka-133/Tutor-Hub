@@ -4,6 +4,7 @@
     margin: 40px auto;
     padding: 20px;
     width: 100%;
+    background: #f8fafc;
 }
 
 /* --- Page Header & Search Bar Styling --- */
@@ -14,9 +15,10 @@
 
 .page-header h1 {
     font-size: 2.8rem;
-    color: #2c3e50;
+    color: #2563eb;
     margin-bottom: 10px;
-    font-weight: 700;
+    font-weight: 800;
+    letter-spacing: 1px;
 }
 
 .page-header p {
@@ -37,8 +39,10 @@
     top: 50%;
     left: 20px;
     transform: translateY(-50%);
-    color: #95a5a6;
-    font-size: 1.2rem;
+    color: #7c3aed;
+    font-size: 1.4rem;
+    opacity: 0.8;
+    transition: color 0.2s;
 }
 
 .search-input {
@@ -49,8 +53,8 @@
     border: 1px solid #dfe6e9;
     border-radius: 50px; /* Creates the "pill" shape */
     background-color: #f8f9fa;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 15px rgba(37,99,235,0.05);
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
 }
 
 .search-input::placeholder {
@@ -59,14 +63,19 @@
 
 .search-input:focus {
     outline: none;
-    border-color: #007bff;
-    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.15);
+    border-color: #2563eb;
+    box-shadow: 0 4px 15px rgba(37,99,235,0.12);
     background-color: #fff;
+}
+
+.search-input:focus + .search-icon {
+    color: #2563eb;
 }
 
 /* --- Tutors Grid Styling --- */
 .tutors-grid-container {
     width: 100%;
+    margin-top: 40px;
 }
 
 .tutors-grid {

@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react'; // Import useContext
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext'; // Import your AuthContext
+import { FaBars, FaTimes } from 'react-icons/fa';
 import './Navbar.css';
 
 const Navbar = () => {
     // --- THIS IS THE KEY CHANGE ---
     // We now use useContext directly and get the 'isLoggedIn' value you defined
     const { isLoggedIn, logout } = useContext(AuthContext);
-    
+
     const navigate = useNavigate();
     const location = useLocation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,29 +33,30 @@ const Navbar = () => {
         navigate('/login');
     };
 
+    const handleMenuToggle = () => setIsMenuOpen(!isMenuOpen);
+    const closeMenu = () => setIsMenuOpen(false);
+
     return (
         <>
             {/* The overlay will appear to allow closing the menu by clicking outside */}
             <div
                 className={`menu-overlay ${isMenuOpen ? 'active' : ''}`}
-                onClick={() => setIsMenuOpen(false)}
+                onClick={closeMenu}
             ></div>
 
             <header className="navbar-header">
                 <nav className="navbar-container">
-                    <NavLink to="/" className="navbar-logo">
+                    <NavLink to="/" className="navbar-logo" onClick={closeMenu}>
                         Tutor Hub
                     </NavLink>
 
                     <button
                         className="menu-toggle"
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        aria-label="Toggle navigation menu"
+                        aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
                         aria-expanded={isMenuOpen}
+                        onClick={handleMenuToggle}
                     >
-                        <span className={`bar ${isMenuOpen ? 'open' : ''}`}></span>
-                        <span className={`bar ${isMenuOpen ? 'open' : ''}`}></span>
-                        <span className={`bar ${isMenuOpen ? 'open' : ''}`}></span>
+                        {isMenuOpen ? <FaTimes /> : <FaBars />}
                     </button>
 
                     <ul className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>

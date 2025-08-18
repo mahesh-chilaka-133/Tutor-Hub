@@ -4,6 +4,7 @@
     align-items: center;
     padding: 50px 20px;
     text-align: center;
+    background: #f8fafc;
 }
 
 .tutor-detail-page {
@@ -18,7 +19,6 @@
     gap: 40px;
     margin-bottom: 50px;
 }
-
 @media (min-width: 992px) {
     .profile-grid {
         grid-template-columns: 2fr 1fr;
@@ -29,7 +29,7 @@
     background: #fff;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 30px rgba(44,62,80,0.07);
 }
 
 .profile-section {
@@ -44,21 +44,25 @@
     align-items: center;
     gap: 12px;
     font-size: 1.6rem;
-    color: #34495e;
+    color: #2563eb;
     padding-bottom: 10px;
     margin-top: 0;
     margin-bottom: 20px;
     border-bottom: 1px solid #eee;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .section-icon {
-    color: #007bff;
+    color: #2237ee;
+    font-size: 1.7rem;
 }
 
 .bio-text {
     font-size: 1.1rem;
     line-height: 1.8;
     color: #555;
+    margin-bottom: 18px;
 }
 
 .subjects-list {
@@ -70,11 +74,18 @@
 }
 
 .subject-item {
-    background-color: #e9f5ff;
-    color: #0056b3;
+    background-color: #e0e7ff;
+    color: #2563eb;
     padding: 8px 18px;
     border-radius: 50px;
     font-weight: 500;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.06);
+    transition: background 0.2s, color 0.2s;
+}
+.subject-item:hover {
+    background-color: #7c3aed;
+    color: #fff;
 }
 
 .profile-sidebar {
@@ -87,7 +98,7 @@
     background: #ffffff;
     border: 1px solid #e9ecef;
     border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+    box-shadow: 0 8px 30px rgba(44,62,80,0.07);
     padding: 30px;
     display: flex;
     flex-direction: column;
@@ -102,19 +113,22 @@
     width: 90px;
     height: 90px;
     border-radius: 50%;
-    background-color: #e9ecef;
-    color: #6c757d;
+    background-color: #e0e7ff;
+    color: #2563eb;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 3rem;
     margin: 0 auto 15px auto;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
 }
 
 .tutor-name {
     font-size: 1.8rem;
     color: #2c3e50;
     margin: 0;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .tutor-stats {
@@ -133,7 +147,7 @@
 .stat-value {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #34495e;
+    color: #2563eb;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -142,6 +156,7 @@
 
 .rating-icon {
     color: #f8c102;
+    font-size: 1.3rem;
 }
 
 .stat-label {
@@ -155,6 +170,8 @@
     margin-bottom: 10px;
     border-bottom: none;
     padding-bottom: 0;
+    color: #2563eb;
+    font-weight: 700;
 }
 
 .availability-section p {
@@ -168,29 +185,221 @@
     width: 100%;
     padding: 15px;
     font-size: 1.2rem;
-    background-color: #28a745;
+    background: linear-gradient(90deg, #28a745 0%, #2563eb 100%);
     color: white;
     border: none;
     border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
+    transition: background 0.2s, transform 0.2s;
+    box-shadow: 0 2px 8px rgba(37,99,235,0.08);
 }
-
 .btn-book-session:hover {
-    background-color: #218838;
-    transform: translateY(-2px);
+    background: linear-gradient(90deg, #218838 0%, #1d4ed8 100%);
+    transform: translateY(-2px) scale(1.03);
 }
 
 .reviews-section-container {
     background: #fff;
     padding: 30px;
     border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 8px 30px rgba(44,62,80,0.07);
 }
 .reviews-section-container h3 {
     font-size: 1.8rem;
-    color: #34495e;
+    color: #2563eb;
     margin-top: 0;
     margin-bottom: 25px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* --- Responsive: Small screens --- */
+@media (max-width: 600px) {
+    .page-container {
+        padding: 16px 6px;
+    }
+    .tutor-detail-page {
+        padding: 8px;
+        margin: 16px auto;
+        max-width: 99vw;
+    }
+    .profile-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-bottom: 18px;
+    }
+    .profile-main {
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 0.98rem;
+    }
+    .profile-section {
+        margin-bottom: 18px;
+    }
+    .profile-section h3, .availability-section h4 {
+        font-size: 1.1rem;
+        gap: 6px;
+        margin-bottom: 10px;
+        padding-bottom: 4px;
+        border-bottom-width: 1px;
+    }
+    .section-icon {
+        font-size: 1.1rem;
+    }
+    .bio-text {
+        font-size: 0.95rem;
+        margin-bottom: 10px;
+    }
+    .subjects-list {
+        gap: 6px;
+    }
+    .subject-item {
+        padding: 6px 10px;
+        font-size: 0.95rem;
+        border-radius: 30px;
+    }
+    .profile-sidebar {
+        position: static;
+        top: auto;
+        align-self: auto;
+        margin-bottom: 18px;
+    }
+    .action-card {
+        padding: 12px;
+        border-radius: 8px;
+        gap: 10px;
+        font-size: 0.98rem;
+    }
+    .profile-avatar-placeholder {
+        width: 60px;
+        height: 60px;
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        border-radius: 50%;
+    }
+    .tutor-name {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+    }
+    .tutor-stats {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 10px 0;
+    }
+    .stat-value {
+        font-size: 1.1rem;
+        gap: 3px;
+    }
+    .rating-icon {
+        font-size: 1rem;
+    }
+    .stat-label {
+        font-size: 0.85rem;
+    }
+    .availability-section h4 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+        padding-bottom: 0;
+    }
+    .availability-section p {
+        font-size: 0.95rem;
+    }
+    .btn-book-session {
+        padding: 10px;
+        font-size: 1rem;
+        border-radius: 6px;
+    }
+    .reviews-section-container {
+        padding: 12px;
+        border-radius: 8px;
+    }
+    .reviews-section-container h3 {
+        font-size: 1.1rem;
+        margin-bottom: 10px;
+    }
+}
+
+/* --- Extra small screens (down to 350px) --- */
+@media (max-width: 400px) {
+    .page-container {
+        padding: 6px 2px;
+    }
+    .tutor-detail-page {
+        padding: 2px;
+        margin: 6px auto;
+        max-width: 100vw;
+    }
+    .profile-main,
+    .action-card,
+    .reviews-section-container {
+        padding: 6px;
+        border-radius: 5px;
+        font-size: 0.9rem;
+    }
+    .profile-section {
+        margin-bottom: 8px;
+    }
+    .profile-section h3, .availability-section h4 {
+        font-size: 0.95rem;
+        gap: 2px;
+        margin-bottom: 4px;
+        padding-bottom: 2px;
+    }
+    .section-icon {
+        font-size: 0.85rem;
+    }
+    .bio-text {
+        font-size: 0.85rem;
+        margin-bottom: 4px;
+    }
+    .subjects-list {
+        gap: 3px;
+    }
+    .subject-item {
+        padding: 4px 6px;
+        font-size: 0.85rem;
+        border-radius: 18px;
+    }
+    .profile-avatar-placeholder {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+        margin-bottom: 4px;
+    }
+    .tutor-name {
+        font-size: 0.95rem;
+        margin-bottom: 2px;
+    }
+    .tutor-stats {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        padding: 4px 0;
+    }
+    .stat-value {
+        font-size: 0.85rem;
+        gap: 1px;
+    }
+    .rating-icon {
+        font-size: 0.8rem;
+    }
+    .stat-label {
+        font-size: 0.75rem;
+    }
+    .availability-section h4 {
+        font-size: 0.85rem;
+        margin-bottom: 2px;
+    }
+    .availability-section p {
+        font-size: 0.85rem;
+    }
+    .btn-book-session {
+        padding: 6px;
+        font-size: 0.9rem;
+        border-radius: 4px;
+    }
+    .reviews-section-container h3 {
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+    }
 }
