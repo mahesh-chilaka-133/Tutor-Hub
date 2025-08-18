@@ -30,6 +30,7 @@ const TutorDetailPage = () => {
             setTutor(tutorResponse.data.data);
             setReviews(reviewsResponse.data.data);
         } catch (err) {
+            console.error('Error fetching tutor details:', err);
             setError('Failed to fetch tutor details. The tutor may not exist.');
         } finally {
             setLoading(false);
