@@ -1,39 +1,52 @@
-import React, { useContext, useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
-import { AuthContext } from '@/context/AuthContext';
-import './VideoCallPage.css'; // Ensure CSS is imported
+import { AuthContext } from '../context/AuthContext';
+import './VideoCallPage.css';
 
 const VideoCallPage = () => {
     const { sessionId } = useParams();
     const { user, isLoggedIn } = useContext(AuthContext);
     const meetingContainerRef = useRef(null);
     const navigate = useNavigate();
+    const [sdkLoaded, setSdkLoaded] = useState(false);
 
     useEffect(() => {
-        console.log("VideoCall: Effect triggered", { isLoggedIn, user, sessionId });
+        // --- 1. Load the Zego SDK dynamically from CDN ---
+        // This avoids Rolleup/Vite build crashes fixed in later versions or specific environments
+        const scriptId = 'zego-sdk-script';
+        let script = document.getElementById(scriptId);
 
-        // Handle both id formats
-        const userId = user?.id || user?._id;
-
-        if (
-            !isLoggedIn ||
-            !user ||
-            !userId ||
-            !user.name ||
-            !sessionId ||
-            !meetingContainerRef.current
-        ) {
-            console.warn("VideoCall: Missing required data", { userId, userName: user?.name, sessionId });
-            return;
+        if (!script) {
+            script = document.createElement('script');
+            script.id = scriptId;
+            script.src = 'https://unpkg.com/@zegocloud/zego-uikit-prebuilt@2.15.0/zego-uikit-prebuilt.js';
+            script.async = true;
+            script.onload = () => {
+                console.log("Zego SDK loaded from CDN");
+                setSdkLoaded(true);
+            };
+            document.body.appendChild(script);
+        } else {
+            setSdkLoaded(true);
         }
 
-        // Keys provided by user
+        // --- 2. Initialize Zego once SDK is ready and dependencies are present ---
+        if (!sdkLoaded || !isLoggedIn || !user || !sessionId || !meetingContainerRef.current) return;
+
+        const userId = user.id || user._id;
+        if (!userId || !user.name) return;
+
         const appID = 974095163;
         const serverSecret = 'd3e865bf74f042987faf63813dcb3ee7';
-
         const userID = userId.toString();
         const userName = user.name;
+
+        // Access from global window object
+        const { ZegoUIKitPrebuilt } = window;
+        if (!ZegoUIKitPrebuilt) {
+            console.error("ZegoUIKitPrebuilt not found on window");
+            return;
+        }
 
         const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
             appID,
@@ -44,7 +57,6 @@ const VideoCallPage = () => {
             3600
         );
 
-        console.log('VideoCall: Creating Zego Instance');
         const zp = ZegoUIKitPrebuilt.create(kitToken);
 
         zp.joinRoom({
@@ -59,18 +71,14 @@ const VideoCallPage = () => {
                     url: `${window.location.origin}${window.location.pathname}`,
                 },
             ],
-            onJoinRoom: () => {
-                console.log('VideoCall: Successfully joined room');
-            },
+            onJoinRoom: () => console.log('VideoCall: Joined'),
             onLeaveRoom: () => {
-                console.log('VideoCall: Left room');
-                navigate('/dashboard'); // Navigate back to dashboard when call ends
+                console.log('VideoCall: Left');
+                navigate('/dashboard');
             },
         });
 
-        // Clean up on unmount
         return () => {
-            console.log('VideoCall: Cleaning up Zego Instance');
             if (zp && typeof zp.destroy === 'function') {
                 zp.destroy();
             }
@@ -78,7 +86,7 @@ const VideoCallPage = () => {
                 meetingContainerRef.current.innerHTML = '';
             }
         };
-    }, [sessionId, isLoggedIn, user, navigate]);
+    }, [sessionId, isLoggedIn, user, navigate, sdkLoaded]);
 
     if (!isLoggedIn || !user) {
         return (
@@ -101,6 +109,7 @@ const VideoCallPage = () => {
                 background: '#000'
             }}
         >
+            {!sdkLoaded && <div style={{ color: 'white', padding: '20px' }}>Loading Video Engine...</div>}
             <div
                 ref={meetingContainerRef}
                 style={{

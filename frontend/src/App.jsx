@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
 
@@ -17,7 +17,9 @@ import TutorListPage from './pages/TutorListPage';       // Full, protected list
 import TutorDetailPage from './pages/TutorDetailPage';     // Protected tutor detail page
 import DashboardPage from './pages/DashboardPage';       // Protected user dashboard
 import NotFoundPage from './pages/NotFoundPage';         // Fallback for any non-existent route
-import VideoCallPage from './pages/VideoCallPage';
+// import VideoCallPage from './pages/VideoCallPage';
+const VideoCallPage = lazy(() => import('./pages/VideoCallPage'));
+
 import Footer from './components/layout/Footer';
 
 // --- Stylesheet ---
@@ -69,7 +71,9 @@ function App() {
             path="/session/:sessionId/call"
             element={
               <ProtectedRoute>
-                <VideoCallPage />
+                <Suspense fallback={<div>Loading Video Call...</div>}>
+                  <VideoCallPage />
+                </Suspense>
               </ProtectedRoute>
             }
           />

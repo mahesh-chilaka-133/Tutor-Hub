@@ -1,5 +1,5 @@
 import React from 'react';
-import api from '@/services/api';
+import api from '../../../services/api';
 import { FaUserGraduate, FaChalkboardTeacher, FaCalendarAlt, FaCheck, FaTimes, FaVideo, FaCreditCard } from 'react-icons/fa';
 import './SessionList.css';
 import { Link } from 'react-router-dom';

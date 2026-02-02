@@ -1,0 +1,111 @@
+﻿
+> vite-project@0.0.0 build
+> vite build
+
+[36mvite v7.0.4 [32mbuilding for production...[36m[39m
+transforming...
+[32mΓ£ô[39m 150 modules transformed.
+npm : [31mΓ£ù[39m 
+Build failed in 7.80s
+At line:1 char:1
++ npm run build 2>&1 
+| Out-File -FilePath 
+build_log.txt 
+-Encoding utf8; ...
++ ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: ([31mΓ£   
+ ù[39m Build fai    
+led in 7.80s:Str    
+ing) [], RemoteE    
+xception
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+[31merror during 
+build:
+[31mCannot add 
+property 0, object 
+is not 
+extensible[31m
+    at Array.push 
+(<anonymous>)
+    at ConditionalExp
+ression.getLiteralVal
+ueAtPath (file:///C:/
+Users/mahes/OneDrive/
+Desktop/Tutor%20Hub/T
+utor-Hub/frontend/nod
+e_modules/rollup/dist
+/es/shared/node-entry
+.js:12270:45)
+    at ConditionalExp
+ression.getLiteralVal
+ueAtPath (file:///C:/
+Users/mahes/OneDrive/
+Desktop/Tutor%20Hub/T
+utor-Hub/frontend/nod
+e_modules/rollup/dist
+/es/shared/node-entry
+.js:12262:53)
+    at file:///C:/Use
+rs/mahes/OneDrive/Des
+ktop/Tutor%20Hub/Tuto
+r-Hub/frontend/node_m
+odules/rollup/dist/es
+/shared/node-entry.js
+:11939:37
+    at EntityPathTrac
+ker.withTrackedEntity
+AtPath (file:///C:/Us
+ers/mahes/OneDrive/De
+sktop/Tutor%20Hub/Tut
+or-Hub/frontend/node_
+modules/rollup/dist/e
+s/shared/node-entry.j
+s:2014:24)
+    at CallExpression
+.getLiteralValueAtPat
+h (file:///C:/Users/m
+ahes/OneDrive/Desktop
+/Tutor%20Hub/Tutor-Hu
+b/frontend/node_modul
+es/rollup/dist/es/sha
+red/node-entry.js:119
+37:33)
+    at file:///C:/Use
+rs/mahes/OneDrive/Des
+ktop/Tutor%20Hub/Tuto
+r-Hub/frontend/node_m
+odules/rollup/dist/es
+/shared/node-entry.js
+:5064:30
+    at EntityPathTrac
+ker.withTrackedEntity
+AtPath (file:///C:/Us
+ers/mahes/OneDrive/De
+sktop/Tutor%20Hub/Tut
+or-Hub/frontend/node_
+modules/rollup/dist/e
+s/shared/node-entry.j
+s:2014:24)
+    at LocalVariable.
+getLiteralValueAtPath
+ (file:///C:/Users/ma
+hes/OneDrive/Desktop/
+Tutor%20Hub/Tutor-Hub
+/frontend/node_module
+s/rollup/dist/es/shar
+ed/node-entry.js:5062
+:33)
+    at Identifier.get
+LiteralValueAtPath (f
+ile:///C:/Users/mahes
+/OneDrive/Desktop/Tut
+or%20Hub/Tutor-Hub/fr
+ontend/node_modules/r
+ollup/dist/es/shared/
+node-entry.js:5207:48
+)[39m
