@@ -108,8 +108,8 @@ exports.updateTutorProfile = asyncHandler(async (req, res, next) => {
     }
 
     // Update fields
-    const { subjects, availability, bio } = req.body;
-    tutor = await Tutor.findByIdAndUpdate(tutor._id, { subjects, availability, bio }, {
+    const { subjects, availability, bio, hourlyRate } = req.body;
+    tutor = await Tutor.findByIdAndUpdate(tutor._id, { subjects, availability, bio, hourlyRate }, {
         new: true,
         runValidators: true
     });

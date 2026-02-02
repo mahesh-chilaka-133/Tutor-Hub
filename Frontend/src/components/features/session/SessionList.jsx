@@ -1,6 +1,6 @@
 import React from 'react';
-import api from '../services/api';
-import { FaUserGraduate, FaChalkboardTeacher, FaCalendarAlt, FaCheck, FaTimes,FaVideo, FaCreditCard } from 'react-icons/fa';
+import api from '@/services/api';
+import { FaUserGraduate, FaChalkboardTeacher, FaCalendarAlt, FaCheck, FaTimes, FaVideo, FaCreditCard } from 'react-icons/fa';
 import './SessionList.css';
 import { Link } from 'react-router-dom';
 
@@ -13,6 +13,17 @@ const SessionList = ({ sessions, userRole, onSessionUpdate, onOpenPaymentModal }
             onSessionUpdate(); // Notify the parent DashboardPage to refetch all data
         } catch (error) {
             console.error("Failed to update session status", error);
+        }
+    };
+
+    const handleDeleteSession = async (sessionId) => {
+        if (window.confirm('Are you sure you want to remove this session?')) {
+            try {
+                await api.delete(`/sessions/${sessionId}`);
+                onSessionUpdate();
+            } catch (error) {
+                console.error("Failed to delete session", error);
+            }
         }
     };
 
@@ -51,7 +62,7 @@ const SessionList = ({ sessions, userRole, onSessionUpdate, onOpenPaymentModal }
                     <div className="session-card-actions">
                         {userRole === 'student' && session.status === 'pending' && session.paymentStatus === 'pending' && (
                             <button
-                                onClick={() => onOpenPaymentModal(session._id)}
+                                onClick={() => onOpenPaymentModal(session._id, session.sessionPrice)}
                                 className={`btn-payment status-${session.paymentStatus}`}
                             >
                                 <FaCreditCard /> Make Payment
@@ -77,6 +88,12 @@ const SessionList = ({ sessions, userRole, onSessionUpdate, onOpenPaymentModal }
                             <Link to={`/session/${session._id}/call`} className="btn-join-call">
                                 <FaVideo /> Join Video Call
                             </Link>
+                        )}
+
+                        {(session.status === 'cancelled' || session.status === 'completed') && (
+                            <button onClick={() => handleDeleteSession(session._id)} className="btn-session-remove" title="Remove Session">
+                                <FaTimes /> Remove
+                            </button>
                         )}
                     </div>
 

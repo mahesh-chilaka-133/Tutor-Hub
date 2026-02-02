@@ -1,5 +1,5 @@
 const express = require('express');
-const { createSession, getMySessions, updateSessionStatus } = require('../controllers/sessionController');
+const { createSession, getMySessions, updateSessionStatus, deleteSession } = require('../controllers/sessionController');
 const { protect, authorize } = require('../middleware/auth');
 
 const router = express.Router();
@@ -18,5 +18,9 @@ router.get('/my-sessions', getMySessions);
 // @route   PUT /api/sessions/:id
 // @desc    Update the status of a session (confirm/cancel)
 router.put('/:id', updateSessionStatus);
+
+// @route   DELETE /api/sessions/:id
+// @desc    Delete a session
+router.delete('/:id', deleteSession);
 
 module.exports = router;

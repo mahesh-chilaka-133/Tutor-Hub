@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { FaTimes, FaBook, FaCalendarAlt } from 'react-icons/fa'; // Import icons
-import api from '../services/api';
+import api from '../../services/api';
 import './BookingModal.css';
 
 const BookingModal = ({ tutor, onClose }) => {
     // State to manage the form inputs
     const [subject, setSubject] = useState(tutor.subjects[0] || '');
     const [sessionDate, setSessionDate] = useState('');
-    
+
     // State for handling success or error messages
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
@@ -53,9 +53,9 @@ const BookingModal = ({ tutor, onClose }) => {
                     </p>
                     <form onSubmit={handleSubmit} className="booking-form">
                         {/* Only show one message at a time */}
-                        {success ? <p className="success-message">{success}</p> : 
-                         error && <p className="error-message">{error}</p>}
-                        
+                        {success ? <p className="success-message">{success}</p> :
+                            error && <p className="error-message">{error}</p>}
+
                         <div className="form-group">
                             <label htmlFor="subject"><FaBook /> Subject</label>
                             <select id="subject" value={subject} onChange={(e) => setSubject(e.target.value)} required>
@@ -66,7 +66,7 @@ const BookingModal = ({ tutor, onClose }) => {
                                 )}
                             </select>
                         </div>
-                        
+
                         <div className="form-group">
                             <label htmlFor="sessionDate"><FaCalendarAlt /> Preferred Date & Time</label>
                             <input
@@ -77,7 +77,7 @@ const BookingModal = ({ tutor, onClose }) => {
                                 required
                             />
                         </div>
-                        
+
                         <div className="modal-actions">
                             <button type="button" onClick={onClose} className="btn-cancel">
                                 Cancel

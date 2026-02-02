@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaSearch } from 'react-icons/fa'; // Import the search icon
 import api from '../services/api';
-import TutorCard from '../components/TutorCard';
+import TutorCard from '../components/features/tutor/TutorCard';
 import './TutorListPage.css';
 
 const TutorListPage = () => {
@@ -9,7 +9,7 @@ const TutorListPage = () => {
     const [tutors, setTutors] = useState([]);
     // State to hold the list that is actually displayed (after filtering)
     const [filteredTutors, setFilteredTutors] = useState([]);
-    
+
     // State for the search input and loading/error handling
     const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
@@ -24,6 +24,7 @@ const TutorListPage = () => {
                 setTutors(response.data.data);
                 setFilteredTutors(response.data.data); // Initially, display all tutors
             } catch (err) {
+                console.error("Error fetching tutors:", err);
                 setError('Failed to fetch tutors. Please try again later.');
             } finally {
                 setLoading(false);
@@ -39,12 +40,12 @@ const TutorListPage = () => {
             if (!tutor || !tutor.user) return false;
 
             const searchTermLower = searchTerm.toLowerCase();
-            
+
             // Check if search term matches the tutor's name
             const nameMatches = tutor.user.name.toLowerCase().includes(searchTermLower);
 
             // Check if search term matches any of the tutor's subjects
-            const subjectMatches = tutor.subjects.some(subject => 
+            const subjectMatches = tutor.subjects.some(subject =>
                 subject.toLowerCase().includes(searchTermLower)
             );
 
@@ -76,7 +77,7 @@ const TutorListPage = () => {
             <main className="tutors-grid-container">
                 {loading && <p className="loading-message">Loading Tutors...</p>}
                 {error && <p className="error-message">{error}</p>}
-                
+
                 {!loading && !error && (
                     <div className="tutors-grid">
                         {filteredTutors.length > 0 ? (

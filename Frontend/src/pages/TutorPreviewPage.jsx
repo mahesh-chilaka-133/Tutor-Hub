@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { FaUserShield } from 'react-icons/fa';
-import TutorCard from '../components/TutorCard'; // We can reuse the same card component
+import TutorCard from '../components/features/tutor/TutorCard'; // We can reuse the same card component
 import './TutorPreviewPage.css'; // New styles for this page
 
 const TutorPreviewPage = () => {
@@ -35,7 +35,7 @@ const TutorPreviewPage = () => {
 
             {loading && <p>Loading tutors...</p>}
             {error && <p className="error-message">{error}</p>}
-            
+
             {!loading && !error && (
                 <div className="tutors-container">
                     {tutors.map(tutor => (

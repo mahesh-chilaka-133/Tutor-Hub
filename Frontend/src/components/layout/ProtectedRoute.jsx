@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { AuthContext } from '../context/AuthContext'; // Ensure this path is correct
+import { AuthContext } from '../../context/AuthContext'; // Ensure this path is correct
 
 const ProtectedRoute = ({ children }) => {
     const { isLoggedIn } = useContext(AuthContext);

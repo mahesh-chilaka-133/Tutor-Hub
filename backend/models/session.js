@@ -28,6 +28,10 @@ const SessionSchema = new mongoose.Schema({
         type: String,
         enum: ['pending', 'paid', 'refunded'], // Define possible payment states
         default: 'pending', // Default to pending payment
+    },
+    sessionPrice: {
+        type: Number,
+        required: true,
     }
 }, { timestamps: true });
 

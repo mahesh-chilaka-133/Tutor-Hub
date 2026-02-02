@@ -1,28 +1,38 @@
 import React, { useContext, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { ZegoUIKitPrebuilt } from '@zegocloud/zego-uikit-prebuilt';
-import { AuthContext } from '../context/AuthContext';
+import { AuthContext } from '@/context/AuthContext';
+import './VideoCallPage.css'; // Ensure CSS is imported
 
 const VideoCallPage = () => {
     const { sessionId } = useParams();
     const { user, isLoggedIn } = useContext(AuthContext);
     const meetingContainerRef = useRef(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
+        console.log("VideoCall: Effect triggered", { isLoggedIn, user, sessionId });
+
+        // Handle both id formats
+        const userId = user?.id || user?._id;
+
         if (
             !isLoggedIn ||
             !user ||
-            !user.id ||
+            !userId ||
             !user.name ||
             !sessionId ||
             !meetingContainerRef.current
         ) {
+            console.warn("VideoCall: Missing required data", { userId, userName: user?.name, sessionId });
             return;
         }
 
-        const appID = 1917417403;
-        const serverSecret = '01e5dfce2849bb0c76edbe60a1549e08';
-        const userID = user.id.toString();
+        // Keys provided by user
+        const appID = 974095163;
+        const serverSecret = 'd3e865bf74f042987faf63813dcb3ee7';
+
+        const userID = userId.toString();
         const userName = user.name;
 
         const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
@@ -34,6 +44,7 @@ const VideoCallPage = () => {
             3600
         );
 
+        console.log('VideoCall: Creating Zego Instance');
         const zp = ZegoUIKitPrebuilt.create(kitToken);
 
         zp.joinRoom({
@@ -48,15 +59,26 @@ const VideoCallPage = () => {
                     url: `${window.location.origin}${window.location.pathname}`,
                 },
             ],
+            onJoinRoom: () => {
+                console.log('VideoCall: Successfully joined room');
+            },
+            onLeaveRoom: () => {
+                console.log('VideoCall: Left room');
+                navigate('/dashboard'); // Navigate back to dashboard when call ends
+            },
         });
 
         // Clean up on unmount
         return () => {
+            console.log('VideoCall: Cleaning up Zego Instance');
+            if (zp && typeof zp.destroy === 'function') {
+                zp.destroy();
+            }
             if (meetingContainerRef.current) {
                 meetingContainerRef.current.innerHTML = '';
             }
         };
-    }, [sessionId, isLoggedIn, user]);
+    }, [sessionId, isLoggedIn, user, navigate]);
 
     if (!isLoggedIn || !user) {
         return (
@@ -67,16 +89,23 @@ const VideoCallPage = () => {
     }
 
     return (
-        <div className="video-call-container">
+        <div
+            className="video-call-wrapper"
+            style={{
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                width: '100vw',
+                height: '100vh',
+                zIndex: 9999,
+                background: '#000'
+            }}
+        >
             <div
                 ref={meetingContainerRef}
                 style={{
-                    width: '100vw',
-                    height: '100vh',
-                    minHeight: '400px',
-                    background: '#000',
-                    borderRadius: '18px',
-                    overflow: 'hidden',
+                    width: '100%',
+                    height: '100%',
                 }}
             />
         </div>

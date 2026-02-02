@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaTimes, FaQrcode } from 'react-icons/fa';
 import './PaymentModal.css';
 
-const PaymentModal = ({ sessionId, onClose, onPaymentComplete }) => {
+const PaymentModal = ({ sessionId, sessionPrice, onClose, onPaymentComplete }) => {
     const [timeLeft, setTimeLeft] = useState(15);
     const [paymentStatusMessage, setPaymentStatusMessage] = useState('');
 
@@ -52,7 +52,7 @@ const PaymentModal = ({ sessionId, onClose, onPaymentComplete }) => {
                                 <h3>Instructions:</h3>
                                 <p>1. Open your preferred payment app (e.g., GPay, Paytm).</p>
                                 <p>2. Scan the QR code above.</p>
-                                <p>3. Enter the exact amount for your session.</p>
+                                <p>3. Amount to Pay: <strong>${sessionPrice || 0}</strong></p>
                                 <p>4. Complete the transaction. Your session status will be updated shortly.</p>
                                 <p>5. This is a dummy integration for demonstration purposes only.</p>
                             </div>

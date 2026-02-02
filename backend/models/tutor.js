@@ -33,6 +33,12 @@ const TutorSchema = new mongoose.Schema(
             type: String,
             maxlength: [500, 'Biography cannot be more than 500 characters'],
         },
+
+        // Hourly rate for sessions
+        hourlyRate: {
+            type: Number,
+            default: 0,
+        },
     },
     {
         // Automatically adds `createdAt` and `updatedAt` fields to the document.

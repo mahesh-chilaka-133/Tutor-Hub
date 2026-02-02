@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import api from '../services/api';
+import api from '../../../services/api';
 
 /**
  * This form allows a student to update their basic profile details.
@@ -52,33 +52,33 @@ const StudentProfileForm = ({ user }) => {
             <form onSubmit={handleSubmit} style={{ marginTop: '20px' }}>
                 {success && <p className="success-message">{success}</p>}
                 {error && <p className="error-message">{error}</p>}
-                
+
                 <div className="form-group">
                     <label htmlFor="name">Full Name</label>
-                    <input 
-                        type="text" 
+                    <input
+                        type="text"
                         id="name"
-                        name="name" 
-                        value={formData.name} 
-                        onChange={handleChange}
-                        required 
-                    />
-                </div>
-                
-                <div className="form-group">
-                    <label htmlFor="email">Email Address</label>
-                    <input 
-                        type="email" 
-                        id="email"
-                        name="email" 
-                        value={formData.email} 
+                        name="name"
+                        value={formData.name}
                         onChange={handleChange}
                         required
                     />
                 </div>
-                
+
+                <div className="form-group">
+                    <label htmlFor="email">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                    />
+                </div>
+
                 {/* Note: Password changes are complex and should ideally be in a separate, dedicated form for security. */}
-                
+
                 <button type="submit">Save Changes</button>
             </form>
         </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import api from '../services/api';
+import api from '../../../services/api';
 
 /**
  * A form for tutors to edit their profile details.
@@ -12,7 +12,7 @@ const TutorProfileForm = ({ initialProfile, onProfileUpdate }) => {
         bio: '',
         availability: ''
     });
-    
+
     // State for success/error messages
     const [success, setSuccess] = useState('');
     const [error, setError] = useState('');
@@ -25,6 +25,7 @@ const TutorProfileForm = ({ initialProfile, onProfileUpdate }) => {
                 subjects: initialProfile.subjects?.join(', ') || '',
                 bio: initialProfile.bio || '',
                 availability: initialProfile.availability?.join(', ') || '',
+                hourlyRate: initialProfile.hourlyRate || 0,
             });
         }
     }, [initialProfile]); // This runs whenever the initialProfile prop changes
@@ -37,17 +38,18 @@ const TutorProfileForm = ({ initialProfile, onProfileUpdate }) => {
         e.preventDefault();
         setError('');
         setSuccess('');
-        
+
         const profileData = {
             subjects: formData.subjects.split(',').map(s => s.trim()).filter(Boolean),
             bio: formData.bio,
             availability: formData.availability.split(',').map(s => s.trim()).filter(Boolean),
+            hourlyRate: Number(formData.hourlyRate),
         };
-        
+
         try {
             await api.put('/tutors/my-profile', profileData);
             setSuccess('Profile updated successfully!');
-            
+
             // If the onProfileUpdate function was provided as a prop, call it
             if (onProfileUpdate) {
                 onProfileUpdate();
@@ -74,6 +76,10 @@ const TutorProfileForm = ({ initialProfile, onProfileUpdate }) => {
                 <div className="form-group">
                     <label>Availability (comma-separated)</label>
                     <input type="text" name="availability" value={formData.availability} onChange={handleChange} placeholder="e.g., Weekday Evenings, Weekends" />
+                </div>
+                <div className="form-group">
+                    <label>Hourly Rate ($)</label>
+                    <input type="number" name="hourlyRate" value={formData.hourlyRate} onChange={handleChange} placeholder="Enter your hourly rate" min="0" />
                 </div>
                 <button type="submit">Save Changes</button>
             </form>

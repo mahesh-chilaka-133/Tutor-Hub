@@ -4,9 +4,9 @@ import { FaBookOpen, FaCalendarAlt, FaUser, FaStar } from 'react-icons/fa';
 import { AuthContext } from '../context/AuthContext';
 import api from '../services/api';
 
-import ReviewList from '../components/ReviewList';
-import ReviewForm from '../components/ReviewForm';
-import BookingModal from '../components/BookingModal';
+import ReviewList from '../components/features/reviews/ReviewList';
+import ReviewForm from '../components/features/reviews/ReviewForm';
+import BookingModal from '../components/modals/BookingModal';
 
 import './TutorDetailPage.css';
 
@@ -91,16 +91,23 @@ const TutorDetailPage = () => {
                                     <span className="stat-label">Reviews</span>
                                 </div>
                             </div>
-                            
+
                             <div className="availability-section">
                                 <h4><FaCalendarAlt className="section-icon" /> General Availability</h4>
                                 <p>{tutor.availability.join(', ') || 'Not specified.'}</p>
                             </div>
-                            
+
+                            <div className="rate-section" style={{ marginTop: '15px' }}>
+                                <h4>Hourly Rate</h4>
+                                <p className="tutor-rate" style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#10b981' }}>
+                                    ${tutor.hourlyRate || 0} / hr
+                                </p>
+                            </div>
+
                             {isLoggedIn && user?.role === 'student' && (
                                 <div className="booking-action">
-                                    <button 
-                                        className="btn-book-session" 
+                                    <button
+                                        className="btn-book-session"
                                         onClick={() => setIsBookingModalOpen(true)}
                                     >
                                         Book a Session
@@ -110,11 +117,11 @@ const TutorDetailPage = () => {
                         </div>
                     </aside>
                 </div>
-                
+
                 <div className="reviews-section-container">
                     <h3>Feedback & Ratings</h3>
                     <ReviewList reviews={reviews} />
-                    
+
                     {isLoggedIn && user?.role === 'student' && (
                         <ReviewForm tutorId={id} onReviewSubmitted={fetchTutorData} />
                     )}

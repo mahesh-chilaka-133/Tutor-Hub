@@ -4,9 +4,9 @@ import { AuthContext } from '../context/AuthContext';
 import api from '../services/api';
 
 // --- Component Imports ---
-import SessionList from '../components/SessionList';
-import ProfileModal from '../components/ProfileModal';
-import PaymentModal from '../components/PaymentModal'; // <-- NEW: PaymentModal
+import SessionList from '../components/features/session/SessionList';
+import ProfileModal from '../components/modals/ProfileModal';
+import PaymentModal from '../components/modals/PaymentModal'; // <-- NEW: PaymentModal
 
 // --- Stylesheet ---
 import './DashboardPage.css';
@@ -20,6 +20,7 @@ const DashboardPage = () => {
     const [isProfileModalOpen, setIsProfileModalOpen] = useState(false);
     const [isPaymentModalOpen, setIsPaymentModalOpen] = useState(false); // <-- NEW: State for Payment Modal
     const [currentSessionIdForPayment, setCurrentSessionIdForPayment] = useState(null); // <-- NEW: Stores the session ID for the modal
+    const [currentSessionPriceForPayment, setCurrentSessionPriceForPayment] = useState(0); // <-- NEW
     const [loading, setLoading] = useState(true);
 
     // --- Data Fetching ---
@@ -30,7 +31,7 @@ const DashboardPage = () => {
                 requests.push(api.get(`/tutors?user=${user._id}`));
             }
             const responses = await Promise.all(requests);
-            
+
             const sessionData = responses[0].data.data;
             setSessions(sessionData.sort((a, b) => new Date(b.sessionDate) - new Date(a.sessionDate)));
 
@@ -48,7 +49,7 @@ const DashboardPage = () => {
             fetchDashboardData().finally(() => setLoading(false));
         }
     }, [user, fetchDashboardData]);
-    
+
     // Callbacks for modals
     const handleProfileUpdate = () => {
         fetchDashboardData(); // Refresh data after profile update
@@ -68,11 +69,7 @@ const DashboardPage = () => {
         setCurrentSessionIdForPayment(null); // Clear the session ID
     };
 
-    // NEW: Function to open payment modal, passed to SessionList
-    const openPaymentModal = (sessionId) => {
-        setCurrentSessionIdForPayment(sessionId);
-        setIsPaymentModalOpen(true);
-    };
+
 
     if (loading || !user) {
         return <div className="dashboard-page"><p>Loading Dashboard...</p></div>;
@@ -93,6 +90,7 @@ const DashboardPage = () => {
             {isPaymentModalOpen && currentSessionIdForPayment && (
                 <PaymentModal
                     sessionId={currentSessionIdForPayment}
+                    sessionPrice={currentSessionPriceForPayment} // <-- Pass price
                     onClose={() => setIsPaymentModalOpen(false)}
                     onPaymentComplete={handlePaymentComplete}
                 />
@@ -114,17 +112,22 @@ const DashboardPage = () => {
                     <div className="sessions-group">
                         <h2>Your Sessions</h2>
                         {sessions.length > 0 ? (
-                            <SessionList 
+                            <SessionList
                                 sessions={sessions}
                                 userRole={user.role}
                                 onSessionUpdate={fetchDashboardData}
-                                onOpenPaymentModal={openPaymentModal} // <-- Pass this function down
+                                onOpenPaymentModal={(sessionId, price) => { // <-- Updated signature
+                                    setCurrentSessionIdForPayment(sessionId);
+                                    // We need to store price too (adding state for it)
+                                    setCurrentSessionPriceForPayment(price);
+                                    setIsPaymentModalOpen(true);
+                                }}
                             />
                         ) : (
                             <p className="no-sessions-message">You have no sessions scheduled.</p>
                         )}
                     </div>
-                    
+
                 </main>
             </div>
         </>

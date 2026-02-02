@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'; // <-- Import useContext
 import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext'; // <-- Import AuthContext
-import AuthLayout from '../components/AuthLayout';
+import AuthLayout from '../components/layout/AuthLayout';
 import api from '../services/api';
 import './AuthForm.css';
 import { FiUser, FiMail, FiLock, FiBriefcase } from 'react-icons/fi'; // <-- Import Briefcase icon
@@ -13,11 +13,11 @@ const RegisterPage = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('student'); // <-- NEW: State for user role, defaults to 'student'
-    
+
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    
-    const { login } = useContext(AuthContext); // <-- Use login from context to auto-login after signup
+
+    // const { login } = useContext(AuthContext); // Auto-login removed
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -26,14 +26,11 @@ const RegisterPage = () => {
         setError('');
         try {
             // Send all four fields (name, email, password, AND role) to the backend
-            const response = await api.post('/auth/register', { name, email, password, role });
-            
-            // Automatically log the user in with the token from the successful registration
-            login(response.data);
-            
-            // Redirect to the main homepage
-            navigate('/');
-            
+            await api.post('/auth/register', { name, email, password, role });
+
+            // navigate to login page
+            navigate('/login');
+
         } catch (err) {
             setError(err.response?.data?.error || 'Failed to register. Please try again.');
         } finally {
@@ -59,7 +56,7 @@ const RegisterPage = () => {
                         <FiLock className="input-icon" />
                         <input type="password" placeholder="At least 6 characters" value={password} onChange={(e) => setPassword(e.target.value)} required minLength="6" />
                     </div>
-                    
+
                     {/* --- NEW ROLE SELECTOR DROPDOWN --- */}
                     <div className="input-group">
                         <FiBriefcase className="input-icon" />

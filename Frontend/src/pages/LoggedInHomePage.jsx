@@ -2,9 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import api from '../services/api';
-import { FaUserGraduate, FaChalkboardTeacher, FaEdit,FaRobot, FaSearch, FaRegCalendarCheck } from 'react-icons/fa';
+import { FaUserGraduate, FaChalkboardTeacher, FaEdit, FaSearch, FaRegCalendarCheck } from 'react-icons/fa';
 import './LoggedInHomePage.css';
-import ChatbotModal from './ChatBotModel'; // Adjust path if needed
+
 
 /**
  * This is the main "welcome" page for a logged-in user.
@@ -12,7 +12,7 @@ import ChatbotModal from './ChatBotModel'; // Adjust path if needed
  * role-specific information to guide the user's next actions.
  */
 const LoggedInHomePage = () => {
-    const [showChatbot, setShowChatbot] = useState(false);
+
     // Get the user object from our global context
     const { user } = useContext(AuthContext);
 
@@ -51,25 +51,25 @@ const LoggedInHomePage = () => {
         <div className="info-box">
             <h3><FaRegCalendarCheck className="info-box-icon" /> Your Upcoming Sessions</h3>
             {loading ? <p>Loading sessions...</p> :
-             sessions.length > 0 ? (
-                <ul className="sessions-list">
-                    {sessions.slice(0, 3).map(session => ( // Show the next 3 sessions
-                        <li key={session._id} className="session-item">
-                            <div>
-                                <strong>{session.subject}</strong> with {session.tutor.user.name}
-                            </div>
-                            <span className="session-time">{new Date(session.sessionDate).toLocaleString()}</span>
-                        </li>
-                    ))}
-                </ul>
-            ) : <p>You have no upcoming confirmed sessions. Time to book one!</p>}
+                sessions.length > 0 ? (
+                    <ul className="sessions-list">
+                        {sessions.slice(0, 3).map(session => ( // Show the next 3 sessions
+                            <li key={session._id} className="session-item">
+                                <div>
+                                    <strong>{session.subject}</strong> with {session.tutor.user.name}
+                                </div>
+                                <span className="session-time">{new Date(session.sessionDate).toLocaleString()}</span>
+                            </li>
+                        ))}
+                    </ul>
+                ) : <p>You have no upcoming confirmed sessions. Time to book one!</p>}
         </div>
     );
 
     // A separate component to render the tutor-specific view
     const renderTutorView = () => (
         <div className="info-box prompt">
-            <FaEdit className="info-box-icon"/>
+            <FaEdit className="info-box-icon" />
             <div>
                 <h3>Complete Your Profile to Attract Students</h3>
                 <p>A great profile with a detailed bio, subjects, and availability is the key to getting booked.</p>
@@ -109,15 +109,7 @@ const LoggedInHomePage = () => {
                     </Link>
                 </aside>
             </div>
-            {/* Floating AI Chatbot Button */}
-            <button
-                className="ai-chatbot-fab"
-                onClick={() => setShowChatbot(true)}
-                aria-label="Open AI Assistant"
-            >
-                <FaRobot size={28} />
-            </button>
-            {showChatbot && <ChatbotModal onClose={() => setShowChatbot(false)} />}
+
         </div>
     );
 };

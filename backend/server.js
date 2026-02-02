@@ -1,4 +1,5 @@
 // Load environment variables from .env file
+// Trigger restart
 const dotenv = require('dotenv');
 dotenv.config({ path: './.env' });
 
@@ -54,7 +55,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/tutors', tutorRoutes);
 app.use('/api/sessions', sessionRoutes);
 app.use('/api/reviews', reviewRoutes);
-app.use('/api/chatbot', require('./routes/chatbot'));
+
 
 
 // --- 4. CUSTOM ERROR HANDLER MIDDLEWARE ---

@@ -2,8 +2,8 @@ import React from 'react';
 import { FaTimes } from 'react-icons/fa';
 
 // Import the two forms it can display
-import StudentProfileForm from './StudentProfileForm';
-import TutorProfileForm from './TutorProfileForm';
+import StudentProfileForm from '../features/student/StudentProfileForm';
+import TutorProfileForm from '../features/tutor/TutorProfileForm';
 
 import './ProfileModal.css'; // We'll create these new styles
 

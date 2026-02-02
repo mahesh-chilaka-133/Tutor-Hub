@@ -3,8 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import { AuthContext } from './context/AuthContext';
 
 // --- Component Imports ---
-import Navbar from './components/Navbar';
-import ProtectedRoute from './components/ProtectedRoute';
+import Navbar from './components/layout/Navbar';
+import ProtectedRoute from './components/layout/ProtectedRoute';
 
 // --- Page Imports (All pages created for the project) ---
 import HomePage from './pages/HomePage';                 // Public landing page
@@ -18,7 +18,7 @@ import TutorDetailPage from './pages/TutorDetailPage';     // Protected tutor de
 import DashboardPage from './pages/DashboardPage';       // Protected user dashboard
 import NotFoundPage from './pages/NotFoundPage';         // Fallback for any non-existent route
 import VideoCallPage from './pages/VideoCallPage';
-import Footer from './components/Footer';
+import Footer from './components/layout/Footer';
 
 // --- Stylesheet ---
 import './App.css';
@@ -28,11 +28,11 @@ import './App.css';
  * It uses the global AuthContext to check the user's login status.
  */
 const HomeRouter = () => {
-    const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn } = useContext(AuthContext);
 
-    // If the user is logged in, show them the personalized welcome page.
-    // Otherwise, show them the public-facing marketing page.
-    return isLoggedIn ? <LoggedInHomePage /> : <HomePage />;
+  // If the user is logged in, show them the personalized welcome page.
+  // Otherwise, show them the public-facing marketing page.
+  return isLoggedIn ? <LoggedInHomePage /> : <HomePage />;
 };
 
 
@@ -51,30 +51,30 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/tutor-preview" element={<TutorPreviewPage />} />
-          
+
           {/* --- Protected Routes (User MUST be logged in to access) --- */}
-          <Route 
-            path="/dashboard" 
-            element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} 
-          />
-          <Route 
-            path="/tutors" 
-            element={<ProtectedRoute><TutorListPage /></ProtectedRoute>} 
-          />
-          <Route 
-            path="/tutor/:id" 
-            element={<ProtectedRoute><TutorDetailPage /></ProtectedRoute>} 
+          <Route
+            path="/dashboard"
+            element={<ProtectedRoute><DashboardPage /></ProtectedRoute>}
           />
           <Route
-    path="/session/:sessionId/call"
-    element={
-      <ProtectedRoute>
-        <VideoCallPage />
-      </ProtectedRoute>
-    }
-  />
+            path="/tutors"
+            element={<ProtectedRoute><TutorListPage /></ProtectedRoute>}
+          />
+          <Route
+            path="/tutor/:id"
+            element={<ProtectedRoute><TutorDetailPage /></ProtectedRoute>}
+          />
+          <Route
+            path="/session/:sessionId/call"
+            element={
+              <ProtectedRoute>
+                <VideoCallPage />
+              </ProtectedRoute>
+            }
+          />
 
-          
+
           {/* --- Catch-all 404 Route --- */}
           {/* This route will match any path that wasn't matched above */}
           <Route path="*" element={<NotFoundPage />} />

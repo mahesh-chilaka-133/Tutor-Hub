@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaBullseye, FaHeart, FaUsers, FaLightbulb } from 'react-icons/fa';
+import { FaBullseye, FaHeart, FaLightbulb } from 'react-icons/fa';
 import './AboutPage.css';
 import aboutImage from '../assets/about-us-illustration.svg'; // We'll assume you have an illustration
 
@@ -53,40 +53,8 @@ const AboutPage = () => {
                 </div>
             </section>
 
-            {/* Section 4: Meet the Team (Fictional) */}
-            <section className="about-section">
-                <div className="about-section-content">
-                    <FaUsers className="section-icon" />
-                    <h2>Meet the Team</h2>
-                    <div className="team-grid">
-                        <div className="team-member">
-                            <h4>K. Sumanth Kumar</h4>
-                            <p>Backend Developer</p>
-                        </div>
-                        <div className="team-member">
-                            <h4>Ch. Mahesh</h4>
-                            <p>Project Management</p>
-                        </div>
-                        <div className="team-member">
-                            <h4>M. Sai Sudheer</h4>
-                            <p>Frontend Developer</p>
-                        </div>
-                        <div className="team-member">
-                            <h4>M. Sasanth</h4>
-                            <p>Project Management</p>
-                        </div>
-                        <div className="team-member">
-                            <h4>D. Sailesh</h4>
-                            <p>UI/UX Designer</p>
-                        </div>
-                        <div className="team-member">
-                            <h4>K. Hemanth Kumar</h4>
-                            <p>UI/UX Designer</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+
+        </div >
     );
 };
 
