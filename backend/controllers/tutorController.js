@@ -1,5 +1,5 @@
 const Tutor = require('../models/tutor');
-const User = require('../models/User')
+const User = require('../models/User');
 const asyncHandler = require('../middleware/asyncHandler');
 const ErrorResponse = require('../utils/errorResponse');
 
