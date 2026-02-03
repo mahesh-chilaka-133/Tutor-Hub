@@ -2,8 +2,7 @@
 
 **Connect, Learn, and Grow — All in One Place**
 
-🌐 Live Website: https://tutor-hub-five.vercel.app/  
-📦 GitHub Repository: https://github.com/mahesh-chilaka-133/Tutor-Hub
+🌐 Live Website: https://tutor-hub-five.vercel.app/
 
 ---
 
